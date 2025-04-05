@@ -1,0 +1,1467 @@
+/* style.css */
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /* Ajuste este valor para corresponder exatamente à altura da sua navbar */
+    scroll-padding-top: 80px; 
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #333231; /* Atualizado: Novo cinza */
+    background-color: #FDFDFD; /* Almost white background */
+    overflow-x: hidden;
+    /* Removido padding-top para eliminar o espaço entre navbar e hero */
+    padding-top: 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', 'Nunito Sans', 'Helvetica Neue', sans-serif;
+    color: #333231; /* Atualizado: Novo cinza */
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Add letter spacing for uppercase */
+}
+
+h1 {
+    font-size: 4rem; /* Adjusted size */
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6); /* Slightly stronger shadow */
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px; /* More spacing for main title */
+}
+
+h2 {
+    font-size: 2.2rem; /* Adjusted size */
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333231; /* Atualizado: Novo cinza */
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.4rem; /* Adjusted size */
+    font-weight: 700;
+    margin-bottom: 1.2rem; /* More space below h3 */
+}
+
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #333231; /* Atualizado: Novo cinza */
+}
+
+a {
+    color: #990052; /* Atualizado: Novo rosa */
+    text-decoration: none;
+    transition: color 0.6s ease; /* Dobrado de 0.3s para 0.6s */
+}
+
+a:hover {
+    color: #990052; /* Atualizado: Novo rosa */
+    text-decoration: none; /* Remove underline globally on hover */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+}
+
+section {
+    padding: 5rem 0;
+    border-bottom: 1px solid #eee; /* Subtle separator between sections */
+    min-height: 100vh; /* Adicionado para fazer as seções ocuparem a altura total da tela */
+    display: flex; /* Adicionado para centralizar o conteúdo verticalmente */
+    align-items: center; /* Adicionado para centralizar o conteúdo verticalmente */
+}
+
+section:last-of-type {
+    border-bottom: none; /* Remove border from last section */
+}
+
+/* Botão CTA (Call to Action) */
+.cta-button {
+    display: inline-block;
+    background-color: #990052; /* Atualizado: Novo rosa */
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 700; /* Bolder button text */
+    transition: background-color 0.6s ease, transform 0.6s ease; /* Dobrado de 0.3s para 0.6s */
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem; /* Slightly smaller button text */
+    margin-top: 1rem;
+    font-family: 'Lato', sans-serif; /* Use body font for buttons */
+    text-transform: uppercase; /* Uppercase button text */
+    letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+    background-color: #7a0042; /* Versão mais escura do novo rosa */
+    transform: translateY(-3px); /* Slightly more lift */
+    color: #fff;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    background: url('images/hero-background.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    border-bottom: none; /* No border below hero */
+    /* Ajustado para compensar a altura da navbar */
+    padding-top: 80px;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.40); /* Adjusted overlay */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px; /* Wider content area */
+    padding: 20px;
+}
+
+.hero-date {
+    font-size: 1.3rem; /* Adjusted size */
+    font-weight: 700; /* Bolder date */
+    margin-top: 1rem;
+    margin-bottom: 0;
+    letter-spacing: 2px; /* Match H1 spacing */
+    font-family: 'Montserrat', 'Nunito Sans', sans-serif; /* Atualizado: Fonte semelhante à Avenir */
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+}
+
+/* Estilos para a seção de história com texto expandível */
+.story-text-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.story-preview {
+    margin-bottom: 1rem;
+}
+
+.story-full {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease, opacity 0.8s ease, margin 0.8s ease;
+    opacity: 0;
+    margin-top: 0;
+}
+
+.story-full.expanded {
+    max-height: 2000px; /* Valor alto o suficiente para acomodar todo o texto */
+    opacity: 1;
+    margin-top: 1rem;
+}
+
+.story-toggle {
+    align-self: flex-start;
+    background-color: transparent;
+    border: none;
+    color: #990052; /* Cor rosa do tema */
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-family: 'Lato', sans-serif;
+}
+
+.story-toggle:hover {
+    color: #7a0042; /* Versão mais escura do rosa */
+    transform: translateY(-2px);
+}
+
+.story-toggle:focus {
+    outline: none;
+}
+
+.toggle-text-collapse,
+.toggle-icon-collapse {
+    display: none;
+}
+
+.story-toggle.expanded .toggle-text-expand,
+.story-toggle.expanded .toggle-icon-expand {
+    display: none;
+}
+
+.story-toggle.expanded .toggle-text-collapse,
+.story-toggle.expanded .toggle-icon-collapse {
+    display: inline-block;
+}
+
+/* Ajustes para a seção de história */
+.story-content {
+    display: flex;
+    align-items: flex-start; /* Alterado para alinhar ao topo */
+    gap: 3rem;
+}
+
+.story-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #333231;
+    margin-bottom: 1rem;
+}
+
+.story-image {
+    max-width: 40%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    position: sticky;
+    top: 100px; /* Ajuste conforme necessário para considerar a navbar */
+}
+
+/* Responsividade para a seção de história */
+@media (max-width: 768px) {
+    .story-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .story-image {
+        max-width: 80%;
+        margin: 0 auto 2rem;
+        position: static; /* Remove sticky em mobile */
+    }
+    
+    .story-toggle {
+        align-self: center;
+        margin-top: 1.5rem;
+    }
+    
+    .story-text-container {
+        text-align: left; /* Mantém o texto alinhado à esquerda */
+    }
+}
+
+
+/* Parallax Divider */
+.parallax-divider {
+    min-height: 100vh; /* Alterado para ocupar a altura total da tela */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: none; /* No border on parallax */
+}
+
+.parallax-1 {
+    background-image: url('images/parallax-1.jpg');
+}
+
+.parallax-2 {
+    background-image: url('images/parallax-2.jpg');
+}
+
+/* Details Section */
+.details-section {
+    background-color: #FDFDFD; /* Match body background */
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem; /* Increased gap */
+}
+
+.detail-item {
+    background-color: #ffff;
+    padding: 2.5rem;
+    border-radius: 6px; /* Slightly less radius */
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    border: 1px solid #eee; /* Subtle border */
+    transition: transform 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease; /* Dobrado de 0.3s para 0.6s */
+    position: relative; /* Para o efeito de borda */
+    overflow: hidden; /* Para o efeito de borda */
+}
+
+/* Efeito de hover nos cards */
+.detail-item:hover {
+    transform: translateY(-5px); /* Leve elevação no hover */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* Sombra mais pronunciada no hover */
+    border-color: #990052; /* Borda na cor rosa no hover */
+}
+
+/* Efeito de borda animada no hover */
+.detail-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #990052; /* Cor rosa para a borda inferior */
+    transition: width 0.6s ease; /* Dobrado de 0.3s para 0.6s */
+}
+
+.detail-item:hover::after {
+    width: 100%; /* Expande a borda no hover */
+}
+
+.detail-icon {
+    font-size: 2.5rem;
+    color: #990052; /* Atualizado: Novo rosa */
+    margin-bottom: 1.5rem;
+    display: block;
+    transition: transform 0.6s ease; /* Dobrado de 0.3s para 0.6s */
+}
+
+.detail-item:hover .detail-icon {
+    transform: scale(1.1); /* Leve aumento do ícone no hover */
+}
+
+.detail-item h3 {
+    color: #333231; /* Atualizado: Novo cinza */
+    margin-bottom: 1rem;
+    font-size: 1.5rem; /* Adjusted size */
+}
+
+.detail-item p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: #333231; /* Atualizado: Novo cinza */
+    line-height: 1.6;
+}
+.detail-item p strong {
+    font-weight: 700; /* Bolder strong text */
+    color: #333231; /* Atualizado: Novo cinza */
+}
+
+.map-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 8px 18px;
+    border: 1px solid #990052; /* Atualizado: Novo rosa */
+    color: #990052; /* Atualizado: Novo rosa */
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700; /* Bolder link */
+    transition: background-color 0.6s ease, color 0.6s ease, transform 0.6s ease; /* Dobrado de 0.3s para 0.6s */
+    text-transform: uppercase; /* Uppercase link */
+    letter-spacing: 0.5px;
+}
+
+.map-link:hover {
+    background-color: #990052; /* Atualizado: Novo rosa */
+    color: #fff;
+    transform: translateY(-2px); /* Leve elevação no hover */
+}
+
+
+/* Gifts Section */
+.gifts-section {
+    text-align: center;
+    background-color: #ffff;
+}
+
+.gift-links {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Increased gap */
+    flex-wrap: wrap;
+}
+
+/* Seção do Versículo Bíblico - Versão Minimalista */
+.verse-section {
+    position: relative;
+    min-height: 100vh; /* Altura ajustada para uma tela completa */
+    background-color: #990052; /* Cor de fundo mais forte, usando o rosa principal do site */
+    overflow: hidden;
+    border-bottom: none;
+    display: block;
+    padding: 0;
+}
+
+.verse-parallax {
+    position: sticky;
+    top: 80px; /* Mesma altura da navbar */
+    height: calc(100vh - 80px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.verse-container {
+    max-width: 1000px;
+    width: 90%;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.verse-content {
+    position: relative;
+    padding: 2rem;
+    /* Removido o fundo e a borda para um design mais minimalista */
+    transform: translateY(0);
+}
+
+/* Removido o pseudo-elemento ::before para um design mais limpo */
+
+.verse-text {
+    font-family: 'Montserrat', serif;
+    font-size: 2.8rem; /* Fonte maior */
+    line-height: 1.4;
+    color: #fff; /* Texto branco para contraste com o fundo */
+    margin-bottom: 1.5rem;
+    font-weight: 300; /* Fonte mais fina para um visual moderno */
+    position: relative;
+    letter-spacing: 1px; /* Espaçamento entre letras para um visual mais elegante */
+}
+
+/* Removido o pseudo-elemento ::before com as aspas para um design mais limpo */
+
+.verse-reference {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8); /* Branco com leve transparência */
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase; /* Referência em maiúsculas para um visual moderno */
+}
+
+/* Substituindo a animação de highlight por uma linha decorativa */
+.verse-text::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #fff;
+    margin: 1.5rem auto 0;
+    opacity: 0.6;
+}
+
+/* RSVP Section */
+.rsvp-section {
+    background-color: #FDFDFD; /* Match body background */
+}
+
+/* Estilos para o container do formulário e mensagem de confirmação */
+.form-container {
+    max-width: 600px;
+    margin: 2rem auto 0 auto;
+    position: relative;
+    min-height: 400px; /* Altura mínima para evitar saltos na página */
+}
+
+.rsvp-form {
+    background-color: #ffff;
+    padding: 3rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.6s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.rsvp-form:hover {
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15); /* Sombra mais pronunciada no hover */
+}
+
+/* Mensagem de confirmação */
+.confirmation-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffff;
+    padding: 3rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    z-index: 0;
+}
+
+.confirmation-message.show {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
+}
+
+.rsvp-form.hide {
+    opacity: 0;
+    transform: scale(1.1);
+    z-index: 0;
+}
+
+.confirmation-icon {
+    font-size: 4rem;
+    color: #990052;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+/* Estilo específico para o ícone de coração partido */
+#confirmation-no .confirmation-icon {
+    color: #666;
+    animation: none; /* Sem animação de pulso para o coração partido */
+}
+
+#confirmation-no .confirmation-icon i {
+    animation: shake 1s ease-in-out; /* Animação única de tremor */
+}
+
+.confirmation-message h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #333231;
+}
+
+.confirmation-message p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333231;
+    max-width: 90%;
+}
+
+.confirmation-details {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+/* Animação de carregamento durante o envio */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.cta-button.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.form-group {
+    margin-bottom: 1.8rem; /* More space */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 700; /* Bolder label */
+    color: #333231; /* Atualizado: Novo cinza */
+    font-size: 0.85rem; /* Smaller label */
+    text-transform: uppercase; /* Uppercase label */
+    letter-spacing: 0.5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 14px 15px; /* More padding */
+    border: 1px solid #ddd; /* Slightly darker border */
+    border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333231; /* Atualizado: Novo cinza */
+    transition: border-color 0.6s ease, box-shadow 0.6s ease; /* Dobrado de 0.3s para 0.6s */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group textarea:focus {
+    border-color: #990052; /* Atualizado: Novo rosa */
+    box-shadow: 0 0 0 2px rgba(153, 0, 82, 0.1); /* Leve glow na cor rosa */
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px; /* Minimum height */
+}
+
+.form-group.radio-group p {
+    font-weight: 700; /* Bolder */
+    color: #333231; /* Atualizado: Novo cinza */
+    margin-bottom: 1rem; /* More space */
+    font-size: 0.85rem; /* Match label size */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group.radio-group label {
+    display: inline-block;
+    margin-right: 2rem; /* More space between radios */
+    font-weight: 400;
+    color: #333231; /* Atualizado: Novo cinza */
+    font-size: 1rem;
+    cursor: pointer;
+}
+.form-group.radio-group input[type="radio"] {
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    accent-color: #990052; /* Atualizado: Novo rosa */
+    cursor: pointer;
+}
+
+
+.rsvp-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 16px; /* Larger button */
+    font-size: 1rem; /* Adjusted size */
+}
+
+/* Footer - Tamanho reduzido pela metade */
+.footer-section {
+    background-color: #333231; /* Atualizado: Novo cinza */
+    color: #ccc; /* Lighter grey text */
+    text-align: center;
+    padding: 1.25rem 1rem; /* Reduzido pela metade (era 2.5rem) */
+    font-size: 0.85rem; /* Ligeiramente menor */
+    border-bottom: none; /* Ensure no border */
+}
+
+.footer-section p {
+    color: #ccc;
+    margin-bottom: 0;
+    line-height: 1.4; /* Ajustado para melhor espaçamento */
+}
+
+/* Top Navigation */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    backdrop-filter: blur(5px); /* Blur effect for modern look */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15); /* Sombra mais pronunciada na parte inferior */
+    z-index: 1000; /* Ensure it's on top */
+    display: flex;
+    justify-content: center; /* Center the ul */
+    padding: 5px 0; /* Reduced vertical padding */
+}
+
+.top-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center; /* Vertically align items */
+    gap: 15px; /* Space between items */
+}
+
+.top-nav li {
+    padding: 5px 0; /* Padding top/bottom for list items */
+}
+
+.top-nav a {
+    color: #333231; /* Atualizado: Novo cinza */
+    text-decoration: none;
+    font-size: 0.8rem; /* Smaller font size for nav */
+    font-weight: 700; /* Bolder nav links */
+    padding: 10px 12px; /* Clickable area */
+    text-transform: uppercase; /* Uppercase nav links */
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: background-color 0.6s ease, color 0.6s ease; /* Dobrado de 0.3s para 0.6s */
+    display: inline-block; /* Ensure proper padding application */
+}
+
+.top-nav a:hover {
+    background-color: #f0f0f0; /* Subtle background on hover */
+    color: #990052; /* Atualizado: Novo rosa */
+}
+
+/* Style for the logo in the nav */
+.nav-logo {
+    height: 38px; /* Tamanho reduzido do logo */
+    width: auto;
+    vertical-align: middle; /* Ensure vertical alignment */
+    transition: transform 0.6s ease; /* Dobrado de 0.3s para 0.6s */
+}
+
+.logo-item {
+    padding: 0; /* Remove padding from logo li */
+    line-height: 0; /* Prevent extra space */
+    margin: 0 10px; /* Add horizontal margin around logo list item */
+}
+
+/* Specific style for the logo link to remove text link styling */
+.logo-item a {
+    padding: 0; /* Remove padding from the logo link itself */
+    background-color: transparent !important; /* Ensure no background on hover */
+    line-height: 0; /* Match parent li */
+}
+
+.logo-item a:hover .nav-logo {
+    transform: scale(1.05); /* Leve aumento do logo no hover */
+}
+
+.logo-item a:hover {
+    background-color: transparent; /* Override hover effect */
+}
+
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 70px; /* Ajustado para compensar a altura da navbar em telas menores */
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    .container {
+        padding: 4rem 1.5rem;
+    }
+    section {
+        padding: 4rem 0;
+    }
+
+    .story-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .story-image {
+        max-width: 60%;
+        margin-bottom: 1.5rem;
+    }
+    .story-content p {
+        text-align: center; /* Center paragraph when stacked */
+    }
+
+    /* Disable fixed background on mobile if causing performance issues */
+    .hero-section,
+    .parallax-divider {
+        background-attachment: scroll;
+    }
+
+    /* Parallax dividers might not need 100vh on mobile */
+    .parallax-divider {
+        min-height: 60vh; /* Adjust height as needed */
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .detail-item {
+        padding: 2rem;
+    }
+
+    .gift-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .gift-links .cta-button {
+        width: 80%;
+        text-align: center;
+    }
+    .rsvp-form {
+        padding: 2rem;
+    }
+    
+    .confirmation-message {
+        padding: 2rem;
+    }
+    
+    .confirmation-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .confirmation-message h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .confirmation-message p {
+        font-size: 1rem;
+    }
+    
+    /* Responsividade para a seção do versículo */
+    .verse-text {
+        font-size: 2.2rem;
+    }
+    
+    .verse-reference {
+        font-size: 1.2rem;
+    }
+    
+    .verse-content {
+        padding: 1.5rem;
+    }
+    
+    .verse-text::after {
+        width: 60px;
+        margin-top: 1.2rem;
+    }
+
+    /* Adjust top nav for mobile */
+    .top-nav ul {
+        gap: 5px; /* Reduce gap */
+        justify-content: space-around; /* Distribute items */
+        width: 100%;
+        padding: 0 10px; /* Add padding to prevent touching edges */
+    }
+    .top-nav a {
+        font-size: 0.7rem; /* Even smaller font */
+        padding: 8px 6px; /* Adjust padding */
+    }
+    .nav-logo {
+        height: 32px; /* Smaller logo */
+        margin: 0 5px; /* Reduce margin */
+    }
+    .logo-item a {
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding-top: 60px; /* Ajustado para compensar a altura da navbar em telas muito pequenas */
+    }
+    h1 {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
+    h2 {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+    .container {
+        padding: 3rem 1rem;
+    }
+    section {
+        padding: 3rem 0;
+    }
+    .story-image {
+        max-width: 80%;
+    }
+    .form-group.radio-group label {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    .cta-button {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+    .hero-date {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+    
+    .confirmation-message {
+        padding: 1.5rem;
+    }
+    
+    .confirmation-icon {
+        font-size: 2.5rem;
+    }
+    
+    .confirmation-message h3 {
+        font-size: 1.3rem;
+    }
+    
+    .confirmation-message p {
+        font-size: 0.9rem;
+    }
+    
+    /* Responsividade para a seção do versículo em telas muito pequenas */
+    
+    @media (max-width: 768px) {
+        .verse-section {
+            min-height: 200vh; /* Reduzir um pouco para mobile, mas ainda manter estendido */
+        }
+        /* outros ajustes existentes... */
+    }
+    
+    @media (max-width: 480px) {
+        .verse-section {
+            min-height: 150vh; /* Ainda mais reduzido para telas muito pequenas */
+        }
+        /* outros ajustes existentes... */
+    }
+
+    .verse-text {
+        font-size: 1.8rem;
+    }
+    
+    .verse-reference {
+        font-size: 1rem;
+    }
+    
+    .verse-content {
+        padding: 1rem;
+    }
+    
+    .verse-text::after {
+        width: 50px;
+        margin-top: 1rem;
+    }
+
+    /* Further adjust nav for very small screens */
+    .top-nav a {
+        padding: 6px 4px; /* Minimal padding */
+    }
+
+    .nav-logo {
+        height: 28px; /* Even smaller logo */
+    }
+}
+
+/* Seção do Versículo Bíblico - Versão Aprimorada */
+.verse-section {
+    position: relative;
+    min-height: 300vh; /* Aumentado para 3x a altura da tela */
+    background: linear-gradient(to bottom, #790040, #8f004c, #b40060); /* Degradê vertical sutil */
+    overflow: hidden;
+    border-bottom: none;
+    display: block;
+    padding: 0;
+}
+
+.verse-parallax {
+    position: fixed; /* Mantido como fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    pointer-events: none; /* Permite clicar através do elemento */
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.5s ease; /* Transição mais suave */
+}
+
+.verse-container {
+    max-width: 1200px;
+    width: 90%;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.verse-content {
+    position: relative;
+    padding: 3rem;
+}
+
+.verse-text {
+    font-family: 'Montserrat', serif;
+    font-size: 3.5rem;
+    line-height: 1.4;
+    color: #fff;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    position: relative;
+    letter-spacing: 1.2px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Sombra sutil para melhorar legibilidade */
+}
+
+.verse-reference {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.verse-text::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: #fff;
+    margin: 2rem auto 0;
+    opacity: 0.6;
+}
+
+/* Ajuste específico para a imagem parallax-2 em desktop */
+.parallax-2 {
+    background-position: center 30%; /* Posição padrão */
+}
+
+/* Em telas maiores (desktop), posiciona a imagem mais para baixo */
+@media (min-width: 992px) {
+    .parallax-2 {
+        background-position: center 35%; /* Move a imagem mais para baixo em desktop */
+    }
+}
+
+/* Estilos para o toast de confirmação do PIX */
+.pix-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: #333231;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.pix-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast-content i {
+    color: #4CAF50;
+    font-size: 1.2rem;
+}
+
+/* Ajuste para os botões na seção de presentes */
+.gift-links {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.gift-links .cta-button {
+    min-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .gift-links .cta-button {
+        width: 80%;
+        min-width: unset;
+    }
+}
+
+#pix-button.clicked {
+    background-color: #4CAF50; /* Verde para indicar sucesso */
+    transition: background-color 0.3s ease;
+}
+
+/* Ajustes para o grid de detalhes com 4 itens */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Alterado para 2 colunas */
+    gap: 3rem;
+}
+
+/* Estilo para o item de cronograma */
+.detail-item-schedule {
+    grid-column: span 2; /* Faz o item ocupar duas colunas */
+}
+
+/* Estilo para a lista de cronograma */
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed rgba(153, 0, 82, 0.2); /* Linha pontilhada sutil */
+}
+
+.schedule-item:last-child {
+    border-bottom: none;
+}
+
+.schedule-time {
+    font-weight: 700;
+    color: #990052; /* Cor rosa do tema */
+    min-width: 60px;
+    text-align: right;
+    font-size: 1.1rem;
+}
+
+.schedule-event {
+    font-size: 1rem;
+    color: #333231;
+}
+
+/* Responsividade para o grid de detalhes */
+@media (min-width: 992px) {
+    .details-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas grandes */
+    }
+    
+    .detail-item-schedule {
+        grid-column: 1 / -1; /* Ocupa toda a largura em telas grandes */
+    }
+}
+
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr; /* 1 coluna em telas pequenas */
+    }
+    
+    .detail-item-schedule {
+        grid-column: 1; /* Ocupa apenas 1 coluna em telas pequenas */
+    }
+    
+    .schedule-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+        text-align: center;
+        padding: 0.8rem 0;
+    }
+    
+    .schedule-time {
+        text-align: center;
+        width: 100%;
+        font-size: 1.2rem;
+    }
+    
+    .schedule-event {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Estilos para o cronômetro regressivo */
+.countdown-container {
+    margin-top: 1.5rem;
+}
+
+.countdown {
+    font-family: 'Montserrat', 'Nunito Sans', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+    .countdown {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown {
+        font-size: 0.85rem;
+    }
+}
+
+/* Ajustes para a navbar em dispositivos móveis - Versão com duas faixas */
+@media (max-width: 768px) {
+    /* Ajusta a altura total da navbar */
+    .top-nav {
+        padding: 0;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    /* Estiliza a lista principal */
+    .top-nav ul {
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    
+    /* Faixa superior com o logo */
+    .top-nav .logo-item {
+        width: 100%;
+        order: -1; /* Coloca o logo no topo */
+        background-color: rgba(255, 255, 255, 0.98); /* Fundo ligeiramente mais opaco */
+        padding: 8px 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid rgba(0,0,0,0.05); /* Separador sutil */
+    }
+    
+    /* Ajusta o tamanho do logo */
+    .logo-item .nav-logo {
+        height: 36px;
+    }
+    
+    /* Faixa inferior com os links */
+    .top-nav li:not(.logo-item) {
+        flex: 1;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        min-width: 20%; /* Garante que caibam 4 itens por linha */
+    }
+    
+    /* Estiliza os links de navegação */
+    .top-nav li:not(.logo-item) a {
+        padding: 10px 5px;
+        font-size: 0.7rem; /* Fonte menor */
+        display: block;
+        letter-spacing: 0.5px; /* Menos espaçamento entre letras */
+    }
+    
+    /* Ajusta o padding do link do logo */
+    .logo-item a {
+        padding: 0;
+    }
+}
+
+/* Ajustes adicionais para telas muito pequenas */
+@media (max-width: 480px) {
+    .top-nav li:not(.logo-item) a {
+        padding: 8px 2px;
+        font-size: 0.65rem; /* Fonte ainda menor */
+    }
+    
+    .logo-item .nav-logo {
+        height: 32px; /* Logo ligeiramente menor */
+    }
+}
+
+/* Ajuste para compensar a altura da navbar em duas faixas */
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 90px; /* Ajuste este valor conforme necessário */
+    }
+    
+    html {
+        scroll-padding-top: 90px; /* Ajuste este valor para corresponder à altura total da navbar */
+    }
+}
+
+/* Ajustes para o efeito parallax em dispositivos móveis */
+@media (max-width: 768px) {
+    /* Desativa o efeito parallax fixo em dispositivos móveis */
+    .parallax-divider {
+        position: relative;
+        background-attachment: scroll; /* Necessário para compatibilidade */
+        background-size: 300% cover; /* Imagem ampliada em % */
+        background-position: center center;
+        min-height: 80vh; /* Altura maior em mobile */
+        overflow: hidden; /* Importante para o efeito */
+    }
+    
+    /* Ajustes específicos para cada parallax */
+    .parallax-1 {
+        background-image: url('images/parallax-1.jpg');
+    }
+    
+    .parallax-2 {
+        background-image: url('images/parallax-2.jpg');
+    }
+    
+    /* Adiciona um overlay sutil para melhorar a visibilidade do conteúdo */
+    .parallax-divider::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2); /* Overlay sutil */
+        z-index: 1;
+    }
+}
+
+/* Ajustes específicos para iOS */
+@supports (-webkit-touch-callout: none) {
+    /* CSS específico para iOS */
+    .parallax-divider {
+        background-attachment: scroll;
+        background-size: cover;
+    }
+}
+
+/* Ajustes aprimorados para a seção do versículo em dispositivos móveis - Sem quebra de palavras */
+@media (max-width: 768px) {
+    .verse-section {
+        min-height: 200vh; /* Mantém a altura estendida, mas um pouco menor em mobile */
+    }
+    
+    .verse-text {
+        font-size: 2.2rem; /* Redução significativa do tamanho da fonte */
+        line-height: 1.3;
+        margin-bottom: 1.5rem;
+        /* Remove as propriedades que causam quebra de palavras */
+        word-wrap: normal;
+        hyphens: none;
+        white-space: normal; /* Permite quebras de linha normais entre palavras */
+    }
+    
+    .verse-reference {
+        font-size: 1.2rem;
+        letter-spacing: 1.5px; /* Menos espaçamento entre letras */
+    }
+    
+    .verse-content {
+        padding: 1.5rem;
+    }
+    
+    .verse-text::after {
+        width: 60px;
+        margin-top: 1.2rem;
+    }
+}
+
+/* Ajustes ainda mais específicos para telas muito pequenas */
+@media (max-width: 480px) {
+    .verse-section {
+        min-height: 150vh; /* Altura ainda menor para telas muito pequenas */
+    }
+    
+    .verse-text {
+        font-size: 1.6rem; /* Fonte ainda menor */
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        /* Mantém a configuração sem quebra de palavras */
+        word-wrap: normal;
+        hyphens: none;
+    }
+    
+    .verse-reference {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .verse-content {
+        padding: 1rem;
+    }
+    
+    .verse-text::after {
+        width: 50px;
+        margin-top: 1rem;
+        height: 2px; /* Linha mais fina */
+    }
+}
+
+/* Ajuste específico para telas muito estreitas (como em orientação retrato) */
+@media (max-width: 360px) {
+    .verse-text {
+        font-size: 1.4rem; /* Ainda menor para telas muito estreitas */
+        /* Mantém a configuração sem quebra de palavras */
+        word-wrap: normal;
+        hyphens: none;
+    }
+}
+
+/* Ajustes para compactar os links na faixa inferior da navbar em dispositivos móveis */
+@media (max-width: 768px) {
+    /* Reduz o padding horizontal dos links */
+    .top-nav li:not(.logo-item) a {
+        padding: 10px 8px; /* Reduzido de 15px para 8px */
+        font-size: 0.68rem; /* Ligeiramente menor */
+        letter-spacing: 0.3px; /* Menos espaçamento entre letras */
+    }
+    
+    /* Reduz a margem entre os itens */
+    .top-nav ul {
+        gap: 2px; /* Espaço mínimo entre os itens */
+    }
+}
