@@ -421,13 +421,11 @@
             const giftsSectionRect = giftsSection.getBoundingClientRect();
             const rsvpSectionRect = rsvpSection.getBoundingClientRect();
             
-            // Verifica se a seção do versículo está visível na tela
-            const isSectionVisible = 
-                verseSectionRect.top < window.innerHeight && 
-                verseSectionRect.bottom > 0;
+            // Calcula a posição de 30% de saída da tela
+            const triggerPosition = window.innerHeight * 0.3;
             
-            // Verifica se a seção de presentes já saiu completamente da tela
-            const isGiftsSectionGone = giftsSectionRect.bottom <= 0;
+            // Verifica se a seção de presentes está com 30% de saída da tela
+            const isGiftsSectionTriggered = giftsSectionRect.bottom <= triggerPosition;
             
             // Verifica se a seção RSVP está começando a entrar na tela
             const isRsvpVisible = rsvpSectionRect.top < window.innerHeight;
@@ -436,22 +434,19 @@
             verseParallax.style.top = navHeight + 'px';
             verseParallax.style.height = `calc(100vh - ${navHeight}px)`;
             
-            if (isSectionVisible && isGiftsSectionGone) {
-                // Torna o texto visível apenas quando a seção está na tela E a seção de presentes saiu completamente
+            if (isGiftsSectionTriggered) {
+                // Torna o texto visível gradualmente conforme a seção de presentes sai da tela
+                const scrollProgress = 1 - (giftsSectionRect.bottom / triggerPosition);
+                const baseOpacity = Math.min(scrollProgress * 1.5, 1); // Aumenta a velocidade do fade-in
                 
                 // Se a seção RSVP estiver entrando na tela, começa a esconder o texto
                 if (isRsvpVisible) {
-                    // Calcula quanto da seção RSVP está visível
                     const rsvpVisiblePercentage = (window.innerHeight - rsvpSectionRect.top) / window.innerHeight;
-                    
-                    // Diminui a opacidade conforme a seção RSVP entra na tela
-                    verseParallax.style.opacity = Math.max(0, 1 - rsvpVisiblePercentage * 2);
+                    verseParallax.style.opacity = Math.max(0, baseOpacity - (rsvpVisiblePercentage * 2));
                 } else {
-                    // Mantém o texto totalmente visível
-                    verseParallax.style.opacity = '1';
+                    verseParallax.style.opacity = baseOpacity;
                 }
             } else {
-                // Esconde o texto quando a seção não está na tela ou a seção de presentes ainda está visível
                 verseParallax.style.opacity = '0';
             }
         }
