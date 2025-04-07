@@ -998,9 +998,9 @@ section:last-of-type {
     .parallax-divider {
         position: relative;
         background-attachment: scroll; /* Necessário para compatibilidade */
-        background-size: 220%; /* Imagem ampliada em 150% */
+        background-size: 260%; /* Imagem ampliada em % */
         background-position: center center;
-        min-height: 100vh; /* Altura maior em mobile */
+        min-height: 110vh; /* Altura maior em mobile */
         overflow: hidden; /* Importante para o efeito */
     }
 
