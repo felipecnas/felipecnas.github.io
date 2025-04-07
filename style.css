@@ -196,7 +196,7 @@ section:last-of-type {
 }
 
 .story-full.expanded {
-    max-height: 2000px; /* Valor alto o suficiente para acomodar todo o texto */
+    max-height: 2200px; /* Valor alto o suficiente para acomodar todo o texto */
     opacity: 1;
     margin-top: 1rem;
 }
