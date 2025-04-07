@@ -317,7 +317,7 @@ section:last-of-type {
 /* Em telas maiores (desktop), posiciona a imagem mais para cima */
 @media (min-width: 992px) {
     .parallax-2 {
-        background-position: center 20%; /* Move a imagem mais para cima em desktop */
+        background-position: center 40%; /* Move a imagem mais para cima em desktop */
     }
 }
 
